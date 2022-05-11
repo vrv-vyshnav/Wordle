@@ -10,28 +10,38 @@ length = len(wordlist)
 i = 0
 word = wordlist[randrange(length)]
 word = word.lower()
-while(True):
-    n = input("search for the word: ")
-    word = word.lower()
-    notfound = 1
-    for wordz in wordlist:
-        wordz = wordz.lower()
-        if n == wordz:
-            notfound = 0
-    if notfound == 0 and n != word:
-        for letter in word:
-            for letters in  n:
-                if letters == letter and i<5:
-                    print("\t",letters ," present in it ")
-                    if word.index(letters) == n.index(letter) and i<5:
-                        print("\t",letter," is at correct position(",n.index(letter),")")
-        i= i+1
-    elif n != word:
-        print("Not in dictionary \n")
-    else:
-        print(" \n ############################################# \n \t \t  WORD FOUND \n ############################################# ")
-        break
-    if n == "0":
-        print("#############################################")
-        print("\n \t \t  Better Luck Next Time \n ")
-        break;
+print(word)
+notfound = 1
+try:     
+    while(True):
+        n = input("search for the word: ")
+        n = n.lower()
+        lstring = len(n)
+        if lstring != 5:
+            print("length doesn't match")
+            continue
+        for wordz in wordlist:
+            wordz = wordz.lower()
+            if n == wordz:
+                notfound = 0
+        if notfound == 0 and n != word:
+            for letter in word:
+                for letters in  n:
+                    if letters == letter and i<5:
+                        print("\t",letters ," present in it ")
+                        if word.index(letters) == n.index(letter) and i<5:
+                            print("\t",letter," is at correct position(",n.index(letter),")")
+            i= i+1
+            # print(i)
+        elif n != word:
+            print("Not in dictionary \n")
+        else:
+            print(" \n ############################################# \n \t \t  WORD FOUND \n ############################################# ")
+            break
+        if n == "0":
+            print("#############################################")
+            print("\n \t \t  Better Luck Next Time \n ")
+            break;
+except Exception as e:
+    print(e)
+        
