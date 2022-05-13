@@ -12,8 +12,6 @@ length = len(wordlist)
 i = 0
 word = wordlist[randrange(length)]
 word = word.lower()
-print(word)
-
 
 def report(start, end, i):
     print("_____________________________________________ \n")
