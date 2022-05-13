@@ -1,3 +1,60 @@
+from tabnanny import check
+
+
+checkWord = input("enter word")
+word = "hello"
+
+for i in range(5):
+    if checkWord[i] in word:
+        print("\t \t" + str(checkWord[i] + " present in it"))
+    if (checkWord[i] == word[i]):
+        print(str("\t \t" + checkWord[i]) + " is in correct position" + str(i))
+    print("\n")
+
+
+
+
+
+# for i in checkWord:
+#     for j in word:
+#         print(j+ " ")
+# j= 0
+# for i in checkWord:
+#     print(checkWord.index(i))
+    # if checkWord.index(i) == word[j]:
+        # print("index match" + i)
+        # j+=1
+        
+
+# print(word[0])
+
+
+
+
+
+
+
+# for letter in word:
+#     for letters in checkWord:
+#         if letters == letter:
+#             print("\t \t", letters, " present in it ")
+#             if word.index(letters) == checkWord.index(letter):
+#                 print("\t \t", letter, " is at correct position(",
+#                         checkWord.index(letter)+1, ")\n")
+# def indices(lst, item):
+#        return [i for i, x in enumerate(lst) if x == item]
+   
+# for letter in word:
+#     if letter in checkWord:
+#         print("letter exist") 
+#         value = indices(word, letter)
+#         print(letter, value)
+#         print("\t \t", letter, " is at correct position(",
+#         checkWord.index(letter)+1, ")\n")
+
+
+
+
 # import time
 
 # start = time.time()
@@ -35,10 +92,10 @@
 # Time = time(start, end)
 # print(Time)
 
-def run(x,y):
-    print(x,y)
-    if x == 0:
-        return y
-    return run(x-1,x+y)
+# def run(x,y):
+#     print(x,y)
+#     if x == 0:
+#         return y
+#     return run(x-1,x+y)
 
-print(run(4,3))
+# print(run(4,3))
