@@ -12,6 +12,7 @@ length = len(wordlist)
 i = 0
 word = wordlist[randrange(length)]
 word = word.lower()
+print(word)
 
 def report(start, end, i):
     print("_____________________________________________ \n")
@@ -39,9 +40,10 @@ def hint(checkWord):
     for i in range(5):
         if checkWord[i] in word:
             print("\t \t" + str(checkWord[i] + " present in it"))
-        if (checkWord[i] == word[i]):
-            print(str("\t \t" + checkWord[i]) +
-                  " is in correct position (" + str(i) + ")\n")
+            if (checkWord[i] == word[i]):
+                print(str("\t \t" + checkWord[i]) +
+                    " is in correct position (" + str(i+1) + ")\n")
+            print("\n")
 
 
 def matchCheck(checkWord):
