@@ -14,8 +14,7 @@ def router():
     print("\n 1 for Main Menu")
     direction = input("\n Enter your choice: ")
     if direction == '0':
-        print("Bye bye")
-        exit()
+        bye()
     else:
         Main()
 
@@ -24,7 +23,7 @@ def wordle():
     print("\n \t \t  \t \t WORDLE \n")
     print(" \t \t _____________________________________________ \n ")
     print(" \t \t Instruction \n ")
-    print(" \t \t  *) Guess the 5 letter word \n  \t \t  *) You won't get any hint after 5 attempts \n  \t \t  *) The word must be a meaning full word \n  \t \t *) Good luck \n  \t \t *) 0 for exit \n")
+    print(" \t \t  *) Guess the 5 letter word \n  \t \t  *) You won't get any hint after 5 attempts \n  \t \t  *) The word must be a meaning full word \n  \t \t  *) Good luck \n  \t \t  *) 0 for exit \n")
     print(" \t \t _____________________________________________ \n ")
     try:
         input("\t \t  \t \t Press enter to start \n")
@@ -37,6 +36,7 @@ def wordle():
         
 def report(start, end, i,word):
     print(" \t \t _____________________________________________ \n")
+    print(" \t \t \t \t Word found\n")
     print(" \t \t stats! \n")
     time = Time(start, end)
     print("\t  \t \t TIme taken  " + time)
@@ -67,10 +67,12 @@ def hint(checkWord,word):
             print("\n")
 
 
-def matchCheck(word):
+def matchCheck(checkWord):
     notfound = 0
-    if [word in wordlist]:
-        notfound = 1 
+    for wordz in wordlist:
+        wordz = wordz.lower()
+        if checkWord == wordz:
+            notfound = 1
     return notfound
 
 
@@ -78,6 +80,7 @@ def WordleMain(start):
     word = wordlist[randrange(length)]
     word = word.lower()
     i= 0
+    print(word)
     while(True):
         checkWord = input(" \t \t search for the word: ")
         print("\n")
@@ -92,9 +95,7 @@ def WordleMain(start):
         if lstring != 5:
             print("\t  \t \t length doesn't match \n")
             continue
-
-        notfound = matchCheck(word)
-
+        notfound = matchCheck(checkWord)
         if notfound == 1 and checkWord != word:
             if i < 5:
                 hint(checkWord,word)
@@ -105,8 +106,7 @@ def WordleMain(start):
 
         else:
             end = time.time()
-            print(" \t \t  \n_____________________________________________ \n \n \t \t  WORD FOUND")
-            report(start, end, i)
+            report(start, end, i,word)
             router()
 
         if checkWord != word:
@@ -121,6 +121,7 @@ def WordleMain(start):
 
 def scamReport(start,j,word,end):
     print("\n \t \t  _____________________________________________ \n")
+    print(" \t \t \t \t Word found\n")
     print(" \t \t stats! \n")
     time = Time(start, end)
     print("\t  \t \t TIme taken  " + time)
@@ -131,28 +132,30 @@ def scamReport(start,j,word,end):
 def scamblerMain(start):
     word = wordlist[randrange(length)]
     word = word.lower()
-    print(word)
     j = 0
+    print(word)
     st = list(word)
     random.shuffle(st)
     shuffleword = ''.join(st)
     print("\t \t  \t \t ",shuffleword,'\n')
     while True:
-        j += 1
         userword = input(" \t \t search for the word: ")
         userword = userword.lower()
-        if userword == word:
-            end = time.time()
-            scamReport(start,j,word,end)
-            router()
-        elif userword == "0":
-            end = time.time()
-            scamReport(start,j,word,end)
-            router()
-        else: 
-            print("\n")
-            print(" \t \t try again")
-
+        if len(userword) != 5:
+            print("\n \t \t \t \t Length doesn't match")
+        else:
+            j += 1
+            if userword == word:
+                end = time.time()
+                scamReport(start,j,word,end)
+                router()
+            elif userword == "0":
+                end = time.time()
+                scamReport(start,j,word,end)
+                router()
+            else: 
+                print("\n")
+                print(" \t \t try again")
 
 
 def wordScambler():
@@ -162,19 +165,21 @@ def wordScambler():
     print(" \t \t Instruction \n ")
     print("\t \t \t *) Find the scramble word \n \t  \t \t *) 0 for exit \n")
     print(" \t \t _____________________________________________ \n ")
-    i = 0
     try:
         input(" \t \t Enter to start")
         _start = time.time()
         scamblerMain(_start)
-
     except Exception as e:
         print(e)
         scamblerMain(_start)
 
-    
 #-------------------- End of word scramble --------------------------------------------------
 
+def bye():
+    print("\n \t \t _____________________________________________ \n")
+    print(" \t \t \t \t bye bye")
+    print("\n \t \t _____________________________________________ \n")
+    exit()
 
 def Main():
     while True:
@@ -189,8 +194,6 @@ def Main():
             wordle()
         elif choose == '2':
             wordScambler()
-        elif choose == '0':
-            break
         else:
-            break
+            bye()
 Main()
